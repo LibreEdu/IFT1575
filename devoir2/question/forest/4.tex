@@ -1,0 +1,97 @@
+%https://tex.stackexchange.com/questions/275563/creating-branch-and-bound/275605
+\documentclass[tikz,border=10pt,multi]{standalone}
+\usetikzlibrary{arrows.meta}
+\usepackage{circledsteps}
+\usepackage{amsmath}
+\usepackage{forest}
+\usepackage{multirow}
+\useforestlibrary{edges}
+\tikzset{%
+	>=stealth,
+	parent node/.style={%
+		rectangle split,
+		rectangle split parts=2,
+		align=left,
+		text width=2.5cm,
+		draw,
+		node distance=1cm and 1cm
+	}
+}
+\begin{document}
+	\begin{forest}
+		%forked edges,
+		for tree={
+			draw,
+			inner xsep=0pt,
+			align={c},
+			edge={-Stealth},
+			l sep+=20pt,
+			%fork sep+=10pt,
+		},
+		before typesetting nodes={
+			where level=0{}{
+				split option={content}{:}{temptoksa,temptoksb},
+				content/.wrap 2 pgfmath args={#1\\\hline #2}{temptoksa}{temptoksb},
+				if={(n()==1)&&(level()>1)}{%
+					edge label/.wrap value={%
+						node [midway, left, font=\scriptsize] {#1}%
+					},
+				}{%
+					edge label/.wrap value={%
+						node [midway, right, font=\scriptsize] {#1}%
+					},
+				},
+			},
+		}
+		[{\Circled{1}\\\hline$0 \leq x_1 \leq 1$\\$0 \leq x_2 \leq 1$\\$0 \leq x_3 \leq 1$\\\hline$x = (0.2, 1, 0)$\\$z = -82.80$\\$\bar{z} = -77.00$}
+			[{\Circled{19}\\\hline$x_1 = 1$\\$0 \leq x_2 \leq 1$\\$0 \leq x_3 \leq 1$}:
+				{$x = (1, 0, 0)$\\$z = -74.00$\\$\bar{z} = -77.00$},
+				edge label={$x_1 = 1$}
+				[{\Circled{25}\\\hline$x_1 = 1$\\$x_2 = 1$\\$0 \leq x_3 \leq 1$}:
+					{$x = (1, 1, 0)$\\$z = -62.00$\\$\bar{z} = -77.00$},
+					edge label={$x_2 = 1$}
+					[{\Circled{27}\\\hline$x_1 = 1$\\$x_2 = 1$\\$ x_3 = 1$}:
+						{$x = (1, 1, 1)$\\$z = -77.00$\\$\bar{z} = -77.00$},
+						edge label={$x_3 = 1$}]
+					[{\Circled{26}\\\hline$x_1 = 1$\\$x_2 = 1$\\$ x_3 = 0$}:
+						{$x = (1, 1, 0)$\\$z = -62.00$\\$\bar{z} = -77.00$},
+						edge label={$x_3 = 0$}]
+				]
+				[{\Circled{22}\\\hline$x_1 = 1$\\$x_2 = 0$\\$0 \leq x_3 \leq 1$}:
+					{$x = (1, 0, 0)$\\$z = -74.00$\\$\bar{z} = -77.00$},
+					edge label={$x_2 = 0$}
+					[{\Circled{24}\\\hline$x_1 = 1$\\$x_2 = 0$\\$ x_3 = 1$}:
+						{$x = (1, 0, 1)$\\$z = -63.00$\\$\bar{z} = -77.00$},
+						edge label={$x_3 = 1$}]
+					[{\Circled{23}\\\hline$x_1 = 1$\\$x_2 = 0$\\$ x_3 = 0$}:
+						{$x = (1, 0, 0)$\\$z = -74.00$\\$\bar{z} = -77.00$},
+						edge label={$x_3 = 0$}]
+				]
+			]
+			[{\Circled{10}\\\hline$x_1 = 0$\\$x_2 =  $\\$0 \leq x_3 \leq 1$}:
+				{$x = (0, 1, 0.67)$\\$z = -80.67$\\$\bar{z} = -77.00$},
+				edge label={$x_1 = 0$}
+				[{\Circled{16}\\\hline$x_1 = 0$\\$x_2 = 1$\\$0 \leq x_3 \leq 1$}:
+					{$x = (0, 1, 0.67)$\\$z = -80.67$\\$\bar{z} = -77.00$},
+					edge label={$x_2 = 1$}
+					[{\Circled{18}\\\hline$x_1 = 0$\\$x_2 = 1$\\$ x_3 = 1$}:
+						{$x = (0, 1, 1)$\\$z = -77.00$\\$\bar{z} = -77.00$},
+						edge label={$x_3 = 1$}]
+					[{\Circled{17}\\\hline$x_1 = 0$\\$x_2 = 1$\\$ x_3 = 0$}:
+						{$x = (0, 1, 0)$\\$z = -28.00$\\$\bar{z} = -77.00$},
+						edge label={$x_3 = 0$}]
+				]
+				[{\Circled{13}\\\hline$x_1 = 0$\\$x_2 = 0$\\$0 \leq x_3 \leq 1$}:
+					{\multirow{2}{*}{NR}\\\\$\bar{z} = -77.00$},
+					edge label={$x_2 = 0$}
+					[{\Circled{15}\\\hline$x_1 = 0$\\$x_2 = 0$\\$ x_3 = 1$}:
+						{\multirow{2}{*}{NR}\\\\$\bar{z} = -77.00$},
+						edge label={$x_3 = 1$}]
+					[{\Circled{14}\\\hline$x_1 = 0$\\$x_2 = 0$\\$ x_3 = 0$}:
+						{\multirow{2}{*}{NR}\\\\$\bar{z} = -77.00$},
+						edge label={$x_3 = 0$}]
+				]
+			]
+		]
+	\end{forest}
+\end{document}

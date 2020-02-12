@@ -1,0 +1,68 @@
+%https://tex.stackexchange.com/questions/275563/creating-branch-and-bound/275605
+\documentclass[tikz,border=10pt,multi]{standalone}
+\usetikzlibrary{arrows.meta}
+\usepackage{circledsteps}
+\usepackage{amsmath}
+\usepackage{forest}
+\useforestlibrary{edges}
+\tikzset{%
+	>=stealth,
+	parent node/.style={%
+		rectangle split,
+		rectangle split parts=2,
+		align=left,
+		text width=2.5cm,
+		draw,
+		node distance=1cm and 1cm
+	}
+}
+\begin{document}
+	\begin{forest}
+		%forked edges,
+		for tree={
+			draw,
+			inner xsep=0pt,
+			align={c},
+			edge={-Stealth},
+			l sep+=20pt,
+			%fork sep+=10pt,
+		},
+		before typesetting nodes={
+			where level=0{}{
+				split option={content}{:}{temptoksa,temptoksb},
+				content/.wrap 2 pgfmath args={#1\\\hline #2}{temptoksa}{temptoksb},
+				if={(n()==1)&&(level()>1)}{%
+					edge label/.wrap value={%
+						node [midway, left, font=\scriptsize] {#1}%
+					},
+				}{%
+					edge label/.wrap value={%
+						node [midway, right, font=\scriptsize] {#1}%
+					},
+				},
+			},
+		}
+		[{\Circled{1}\\\hline$0 \leq x_1 \leq 1$\\$0 \leq x_2 \leq 1$\\$0 \leq x_3 \leq 1$\\\hline$x = (0.2, 1, 0)$\\$z = -82.80$\\$\bar{z} = \infty$}
+			[{\Circled{7}\\\hline$0 \leq x_1 \leq 1$\\$x_2 = 1$\\$0 \leq x_3 \leq 1$}:
+				{$x = (0.2, 1, 0)$\\$z = -82.80$\\$\bar{z} = \infty$},
+				edge label={$x_2 = 1$}
+				[{\Circled{9}\\\hline$0 \leq x_1 \leq 1$\\$x_2 = 1$\\$ x_3 = 1$}:
+					{$x = (0, 1, 1)$\\$z = -77.00$\\$\bar{z} = -77.00$},
+					edge label={$x_3 = 1$}]
+				[{\Circled{8}\\\hline$0 \leq x_1 \leq 1$\\$x_2 = 1$\\$ x_3 = 0$}:
+					{$x = (0.2, 1, 0)$\\$z = -82.80$\\$\bar{z} = \infty$},
+					edge label={$x_3 = 0$}]
+			]
+			[{\Circled{4}\\\hline$0 \leq x_1 \leq 1$\\$x_2 = 0$\\$0 \leq x_3 \leq 1$}:
+				{$x = (0.7, 0, 0)$\\$z = -81.80$\\$\bar{z} = \infty$},
+				edge label={$x_2 = 0$}
+				[{\Circled{6}\\\hline$0 \leq x_1 \leq 1$\\$x_2 = 0$\\$ x_3 = 1$}:
+					{$x = (0.4, 0, 1)$\\$z = -78.60$\\$\bar{z} = \infty$},
+					edge label={$x_3 = 1$}]
+				[{\Circled{5}\\\hline$0 \leq x_1 \leq 1$\\$x_2 = 0$\\$ x_3 = 0$}:
+					{$x = (0.7, 0, 0)$\\$z = -81.80$\\$\bar{z} = \infty$},
+					edge label={$x_3 = 0$}]
+			]
+		]
+	\end{forest}
+\end{document}
