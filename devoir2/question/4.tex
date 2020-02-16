@@ -1,1 +1,80 @@
 \section{Question 4}
+
+Soit le problème :
+
+\begin{tabular}{@{}rrrrrrrrrrrr@{}}
+	Min $z =$ &  $5x_1$ &     &       &     &       & $+$ & $3x_4$ & $-$ & $2x_5$ &     &    \\
+	 Sujet à: & $-6x_1$ &     &       & $+$ & $x_3$ & $-$ & $2x_4$ & $+$ & $2x_5$ & $=$ &  6 \\
+	          & $-3x_1$ & $+$ & $x_2$ &     &       & $+$ & $5x_4$ & $+$ & $3x_5$ & $=$ & 15
+\end{tabular}
+
+Lorsqu’on résout ce problème avec l’algorithme du simplexe. Le premier tableau est:
+
+\begin{center}
+	\begin{tabular}{|c|cccccc|c|}
+		\hline
+		 Variables  &         &         &         &         &         &      &  Termes   \\
+		dépendantes & $x_{1}$ & $x_{2}$ & $x_{3}$ & $x_{4}$ & $x_{5}$ & $-z$ & de droite \\ \hline
+		  $x_{3}$   &  $-6$   &         &    1    &  $-2$   &    2    &      &     6     \\
+		  $x_{2}$   &  $-3$   &    1    &         &    5    &    3    &      &    15     \\ \hline
+		   $-z$     &    5    &         &         &    3    &  $-2$   &  1   &     0     \\ \hline
+	\end{tabular}
+\end{center}
+
+Initialement, les variables dépendantes sont $x_3$ et $x_2$, ce sont les deux variables qui n’apparaissent pas dans la fonction à minimiser. La matrice R est composé des vecteurs colonne $x_3$ et $x_2$. L’ordre est important, afin d’avoir la matrice R qui est égale à la matrice identité.
+
+Ainsi, pour trouver $B^{-1}$, il suffit de regarder les valeurs de $x_3$ et $x_2$ dans le tableau optimal. On a :
+
+\[
+B^{-1} = 
+\begin{pmatrix}
+	-1/4 & 1/2 \\
+	-1/4 & 1/6
+\end{pmatrix}
+\]
+
+Ainsi, une nouvelle variable qui a des coefficients de $-2$ et 6 dans la première et deuxième contrainte aura pour valeur dans le tableau optimal :
+\[
+\begin{pmatrix}
+	-1/4 & 1/2 \\
+	-1/4 & 1/6
+\end{pmatrix}
+\begin{pmatrix}
+	-2 \\
+	6
+\end{pmatrix}
+=
+\begin{pmatrix}
+	7/2 \\
+	3/2
+\end{pmatrix}
+\]
+
+On agit de la même façon pour la valeur de $z$. On prend les valeurs de $z$ des $x_3$ et $x_2$ dans le tableau optimal. Ainsi, on a :
+\[
+\begin{pmatrix}
+3/4 & 1/6 
+\end{pmatrix}
+\begin{pmatrix}
+-2 \\
+6
+\end{pmatrix}
+=
+-\frac{1}{2}
+\]
+
+Il faut ajouter ce nombre au cout dans l’objectif :
+\[1 -\frac{1}{2} = \frac{1}{2}\]
+
+Ainsi, le tableau optimal avec la nouvelle variable est :
+
+\begin{center}
+	\begin{tabular}{|c|ccccccc|c|}
+		\hline
+		 Variables  &         &         &         &         &         &         &      &  Termes   \\
+		dépendantes & $x_{1}$ & $x_{2}$ & $x_{3}$ & $x_{4}$ & $x_{5}$ & $x_{6}$ & $-z$ & de droite \\ \hline
+		  $x_{3}$   &         &  $1/2$  & $- 1/4$ &    3    &    1    &  $7/2$  &      &     6     \\
+		  $x_{2}$   &    1    &  $1/6$  & $- 1/4$ &  $4/3$  &         &  $3/2$  &      &     1     \\ \hline
+		   $-z$     &         &  $1/6$  &  $3/4$  &  $7/3$  &         &  $1/2$  &  1   &     7     \\ \hline
+	\end{tabular}
+\end{center}

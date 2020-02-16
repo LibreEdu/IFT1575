@@ -1,38 +1,16 @@
 \section{Question 5}
-La ligne~\Circled{1} du résultat de l’algorithme de branch-and-bound que nous allons représenter graphiquement est la solution optimale : $x_1 = 0.2$, $x_2 = 1$ et $x_3 = 0$ et la variable à minimiser est $z = -82.80$. Le but de l’algorithme est de trouver des valeurs entières pour $x_1$, $x_2$ et $x_3$ afin que $z$ soit le plus proche possible du minimum de la solution non entière.
-
-Appliquons une contrainte sur $x_3$. Avec les lignes~\Circled{2} et \Circled{3} du résultat, cela nous permet de tracer le graphe de la figure~\ref{arbre1}, ce qui est un développement selon la branche $x_3$.
+L’algorithme de branch-and-bound est représenté à la figure~\ref{arbre5}.
 
 \begin{figure}[htb]
-	\caption{Branche $x_3$}
-	\label{arbre1}
+	\caption{Algorithme par séparation et évaluation, branch and bound}
+	\label{arbre5}
 	\centering
-	\includegraphics[width=.5\linewidth]{question/forest/1.pdf}
+	\includegraphics[height=.98\textheight]{question/forest/5.pdf}
 \end{figure}
 
-Pour les lignes~\Circled{4} à \Circled{9}, il y a d’abord une contrainte sur $x_2$, puis sur $x_3$. Ce développement est représenté à la figure~\ref{arbre2}.
-
-\begin{figure}[htbp]
-	\caption{Branche $x_2$ puis $x_3$}
-	\label{arbre2}
-	\centering
-	\includegraphics[width=.8\linewidth]{question/forest/2.pdf}
-\end{figure}
-
-Les lignes~\Circled{10} à \Circled{12} et \Circled{19} à \Circled{21} sont le résultat d’une contrainte sur $x_1$ puis sur $x_3$. Ce qui correspond à la figure~\ref{arbre3}.
-
-\begin{figure}[htb]
-	\caption{Branche $x_1$ puis $x_3$}
-	\label{arbre3}
-	\centering
-	\includegraphics[width=.8\linewidth]{question/forest/3.pdf}
-\end{figure}
-
-Finalement, les lignes restantes sont le résultat d’une contrainte sur $x_1$, puis sur $x_2$ et $x_3$. Le graphe de cet arbre est représenté à la figure~\ref{arbre4}.
-
-\begin{figure*}[htb]
-	\caption{Branche $x_1$ puis $x_2$ et $x_3$}
-	\label{arbre4}
-	\centering
-	\includegraphics[width=.8\linewidth]{question/forest/4.pdf}
-\end{figure*}
+La solution optimale \Circled{1} est $x = (0.2, 1, 0)$ et la valeur de la fonction à minimiser est égale à $-82.80$. Étant donné que $x$ n’est pas une solution entière et que $x_1$ est la seule valeur non entière, nous allons appliquer une contrainte sur sur $x_1$. Soit $x_1 = 1$ , soit $x_1 = 0$. En contraignant $x$ à être égale à 1, on trouve une solution entière : $x = (0.2, 1, 0)$ \Circled{2}. Le meilleur minimum avec une solution passe ainsi de $+\infty$ (pas de solution) à $-74.00$. Étant donné qu’on a trouvé une solution entière, on arrête l’exploration de cette branche pour passer à la contrainte $x_1 = 0$x. Sur cette branche, on trouve une nouvelle solution $x = (0, 1, 0.67)$ \Circled{3}. $x_3$ étant la seule valeur non entière de la solution on va appliquer la contrainte à cette variable. Et ainsi de suite. Il y a trois raisons pour lesquelles on peut arrêter l’exploration d’une branche :
+\begin{itemize}
+	\item la solution n’est pas réalisable \Circled{6};
+	\item la solution est entière \Circled{2} \Circled{5} \Circled{7};
+	\item la solution prend une valeur supérieure à une solution entière déjà trouvée ($z \geq \bar{z}$) : cela ne sert à rien d’explorer la branche plus en avant, toutes les solutions entières trouvées seront moins optimales que l’actuelle meilleure solution entière.
+\end{itemize}
