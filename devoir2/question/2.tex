@@ -1,1 +1,56 @@
-\section{Question 2}
+\section*{Question 2}
+\addcontentsline{toc}{section}{Question 2}
+\setcounter{subsection}{0}
+
+\emph{Démontrer qu’il ne peut exister de solution de base réalisable où $x_{1j}$ et $x_{2j}$ sont toutes les deux variables de base, quel que soit $j = 1, \dots, n$.}
+
+On a le tableau initial suivant :
+
+\begin{center}
+	\renewcommand{\arraystretch}{1.5}
+	\begin{tabular}{|c| ccccccccc|c|}
+		\hline
+		v.d. & $x_{11}$ & $x_{21}$  & $\cdots$ & $x_{1j}$ & $x_{2j}$  & $\cdots$ & $x_{1n}$ & $x_{2n}$  & $-z$ &   t.d.   \\ \hline
+		     & $a_{11}$ & -$a_{11}$ & $\cdots$ & $a_{1j}$ & -$a_{1j}$ & $\cdots$ & $a_{1n}$ & -$a_{1n}$ &      &  $b_1$   \\
+		     & $a_{21}$ & -$a_{21}$ & $\cdots$ & $a_{2j}$ & -$a_{2j}$ & $\cdots$ & $a_{2n}$ & -$a_{2n}$ &      &  $b_2$   \\
+		     & $\vdots$ & $\vdots$  & $\ddots$ & $\vdots$ & $\vdots$  & $\ddots$ & $\vdots$ & $\vdots$  &      & $\vdots$ \\
+		     & $a_{m1}$ & -$a_{m1}$ & $\cdots$ & $a_{mj}$ & -$a_{mj}$ & $\cdots$ & $a_{mn}$ & -$a_{mn}$ &      &  $b_m$   \\ \hline
+		 -z  & $c_{1}$  & -$c_{1}$  & $\cdots$ & $c_{j}$  & -$c_{j}$  & $\cdots$ & $c_{n}$  & -$c_{n}$  &  1   &          \\ \hline
+	\end{tabular}
+\end{center}
+
+Afin de rendre $x_{1j}$ variable indépendante, on doit avoir un 1 vis-à-vis de $x_{1j}$ dans une des contraintes. On peut supposer sans perte de généralité qu’il s’agit de la première contrainte. On doit alors diviser la première ligne du tableau par $a_{1j}$:
+
+\begin{center}
+	\renewcommand{\arraystretch}{1.5}
+	\begin{tabular}{|c|ccccccccc|c|}
+		\hline
+		v.d. &        $x_{11}$         &         $x_{21}$         & $\cdots$ & $x_{1j}$ & $x_{2j}$  & $\cdots$ &        $x_{1n}$         &         $x_{2n}$         & $-z$ &          t.d.          \\ \hline
+		     & $\frac{a_{11}}{a_{1j}}$ & -$\frac{a_{11}}{a_{1j}}$ & $\cdots$ &    1     &    -1     & $\cdots$ & $\frac{a_{1n}}{a_{1j}}$ & -$\frac{a_{1n}}{a_{1j}}$ &      & $\frac{b_{1}}{a_{1j}}$ \\
+		     &        $a_{21}$         &        -$a_{21}$         & $\cdots$ & $a_{2j}$ & -$a_{2j}$ & $\cdots$ &        $a_{2n}$         &        -$a_{2n}$         &      &         $b_2$          \\
+		     &        $\vdots$         &         $\vdots$         & $\ddots$ & $\vdots$ & $\vdots$  & $\ddots$ &        $\vdots$         &         $\vdots$         &      &        $\vdots$        \\
+		     &        $a_{m1}$         &        -$a_{m1}$         & $\cdots$ & $a_{mj}$ & -$a_{mj}$ & $\cdots$ &        $a_{mn}$         &        -$a_{mn}$         &      &         $b_m$          \\ \hline
+		 -z  &         $c_{1}$         &         -$c_{1}$         & $\cdots$ & $c_{j}$  & -$c_{j}$  & $\cdots$ &         $c_{n}$         &         -$c_{n}$         &  1   &                        \\ \hline
+	\end{tabular}
+\end{center}
+
+On peut maintenant effectuer un pivot pour obtenir:
+
+\begin{center}
+	%\begin{small}
+	\renewcommand{\arraystretch}{1.5}
+	\begin{tabular}{|c|ccccccccc|c|}
+		\hline
+		  v.d.   &        $x_{11}$         &         $x_{21}$         & $\cdots$ &  $x_{1j}$   &   $x_{2j}$   & $\cdots$ &        $x_{1n}$         &         $x_{2n}$         & $-z$ &          t.d.          \\ \hline
+		$x_{1j}$ & $\frac{a_{11}}{a_{1j}}$ & -$\frac{a_{11}}{a_{1j}}$ & $\cdots$ &      1      &      -1      & $\cdots$ & $\frac{a_{1n}}{a_{1j}}$ & -$\frac{a_{1n}}{a_{1j}}$ &      & $\frac{b_{1}}{a_{1j}}$ \\
+		         &     $\bar{a_{21}}$      &     -$\bar{a}_{21}$      & $\cdots$ &             &              & $\cdots$ &     $\bar{a}_{2n}$      &     -$\bar{a}_{2n}$      &      &     $\bar{b}_{2}$      \\
+		         &        $\vdots$         &         $\vdots$         & $\ddots$ &  $\vdots$   &   $\vdots$   & $\ddots$ &        $\vdots$         &         $\vdots$         &      &        $\vdots$        \\
+		         &     $\bar{a}_{m1}$      &     -$\bar{a}_{m1}$      & $\cdots$ &             &              & $\cdots$ &     $\bar{a}_{mn}$      &     -$\bar{a}_{mn}$      &      &      $\bar{b}_m$       \\ \hline
+		   -z    &      $\bar{c}_{1}$      &       -$\bar{c}_1$       & $\cdots$ & $\bar{c}_j$ & -$\bar{c}_j$ & $\cdots$ &       $\bar{c}_n$       &       -$\bar{c}_1$       &  1   &       $\bar{z}$        \\ \hline
+	\end{tabular}
+	%\end{small}
+\end{center}
+
+Dans ce tableau, tous les coefficients de $x_{2j}$ sont zéros sauf dans la première ligne et donc il est impossible de faire entrer $x_{2j}$ dans la base sans faire sortir $x_{ij}$
+
+Ceci démontre qu’il est impossible d’avoir $x_{ij}$ et $x_{2j}$ dans la base en même temps.

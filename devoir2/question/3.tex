@@ -1,1 +1,278 @@
-\section{Question 3}
+\section*{Question 3}
+\addcontentsline{toc}{section}{Question 3}
+
+\renewcommand{\theenumi}{\alph{enumi}}
+%\begin{enumerate}
+\subsection{Produire directement le tableau optimal à partir des informations fournies}
+	
+La matrice des coefficients est la suivante:
+
+\begin{center}
+	\begin{math}
+	A = 
+	\begin{pmatrix}
+		1 & 2 & 3 & 0 \\
+		2 & 1 & 5 & 0 \\
+		1 & 2 & 1 & 1
+	\end{pmatrix}
+	\end{math}
+\end{center}
+
+On peut alors obtenir les coefficient dans le tableau final en calculant $B^{-1}A$:
+	
+\begin{center}
+	\begin{math}
+	B^{-1}A =
+	\begin{pmatrix}
+		\frac{2}{3}  & -\frac{1}{3} & 0 \\[5pt]
+		-\frac{1}{3} & \frac{2}{3}  & 0 \\[5pt]
+		-1           & 0            & 1
+	\end{pmatrix}
+	\begin{pmatrix}
+		1 & 2 & 3 & 0 \\[5pt]
+		2 & 1 & 5 & 0 \\[5pt]
+		1 & 2 & 1 & 1
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		0 & 1 & -\frac{1}{3} & 0 \\[5pt]
+		1 & 0 & \frac{7}{3}  & 0 \\[5pt]
+		0 & 0 & -2           & 1
+	\end{pmatrix}
+	\end{math}
+\end{center}
+
+On peut aussi trouver les termes de droite en calculant $B^{-1}b$:
+
+\begin{center}
+	\begin{math}
+	B^{-1}b =
+	\begin{pmatrix}
+		\frac{2}{3}  & -\frac{1}{3} & 0 \\[5pt]
+		-\frac{1}{3} & \frac{2}{3}  & 0 \\[5pt]
+		-1           & 0            & 1
+	\end{pmatrix}
+	\begin{pmatrix}
+		15 \\[5pt]
+		20 \\[5pt]
+		20
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		\frac{10}{3} \\[5pt]
+		\frac{25}{3} \\[5pt]
+		5
+	\end{pmatrix}
+	\end{math}
+\end{center}
+	
+Il reste à calculer $\bar{c}_3$ et $z$. Pour ce faire, on a besoin de $C_B$, on regardant $B^{-1}A$, on voit que:
+
+\begin{center}
+	\begin{math} 
+	X_B =
+	\begin{pmatrix}
+		x_2 \\
+		x_1 \\
+		x_4
+	\end{pmatrix}
+	\end{math}
+\end{center}
+
+Et donc $C_B$ est composé des coûts des variables $x_2$,$x_1$ et $x_4$:
+\begin{center}
+	\begin{math}
+	C_B = 
+	\begin{pmatrix}
+		-2 \\
+		-1 \\
+		1
+	\end{pmatrix}
+	\end{math}
+\end{center}
+
+Avec, $C_B$ on peut calculer $\pi^{T}$:
+	
+\begin{center}
+	\begin{math}
+	\pi^{T} = C_B^TB^{-1} =
+	\begin{pmatrix}
+		-2 & -1 & 1
+	\end{pmatrix}
+	\begin{pmatrix}
+		\frac{2}{3}  & -\frac{1}{3} & 0 \\[5pt]
+		-\frac{1}{3} & \frac{2}{3}  & 0 \\[5pt]
+		-1           & 0            & 1
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		-2 & 0 & 1
+	\end{pmatrix}
+	\end{math}
+\end{center}
+
+Et donc:
+
+\begin{center}
+	\begin{math}
+	\bar{c}_3 = c_3 - \pi^Ta_{.3} = -3 - 
+	\begin{pmatrix}
+	-2 & 0 & 1
+	\end{pmatrix}
+	\begin{pmatrix}
+		3 \\
+		5 \\
+		1
+	\end{pmatrix}
+	= -3 + 5 = 2
+	\end{math}
+\end{center}
+
+Finalement, on peut calculer z:
+
+\begin{center}
+	\begin{math}
+	z = -\pi^Tb = - 
+	\begin{pmatrix}
+	-2 & 0 & 1
+	\end{pmatrix}
+	\begin{pmatrix}
+		15 \\
+		20 \\
+		20
+	\end{pmatrix}
+	= 10
+	\end{math}
+\end{center}
+On obtient alors le tableau optimal suivant:
+
+\begin{center}
+	\renewcommand{\arraystretch}{1.5}
+	\begin{tabular}{|c|ccccc|c|}
+		\hline
+		v.d.  & $x_1$ & $x_2$ &     $x_3$      & $x_4$ & $-z$ &      t.d.      \\ \hline
+		$x_2$ &       &   1   & -$\frac{1}{3}$ &       &      & $\frac{10}{3}$ \\
+		$x_1$ &   1   &       & $\frac{7}{3}$  &       &      & $\frac{25}{3}$ \\
+		$x_4$ &       &       &       -2       &   1   &      &       5        \\ \hline
+		$-z$  &       &       &       2        &       &  1   &       10       \\ \hline
+	\end{tabular}
+\end{center}
+	
+\subsection{La base optimale demeure-t-elle optimale si le coût de la variable $x_3$ dans la formulation initiale du problème est égal à -5?}
+	
+Changer le coût de $x_3$ affecte seulement $\bar{c}_3$. Le nouvelle valeure est:
+
+\begin{center}
+	\begin{math}
+	\bar{c}_3 = c_3 - \pi^Ta_{.3} = -5 - 
+	\begin{pmatrix}
+	-2 & 0 & 1
+	\end{pmatrix}
+	\begin{pmatrix}
+		3 \\
+		5 \\
+		1
+	\end{pmatrix}
+	= -5 + 5 = 0
+	\end{math}
+\end{center}
+
+Donc comme $\bar{c}_3 \geq 0$, la base demeure optimale. Par contre, la solution n’est plus unique car on pourrait effectuer un pivot en utilisant $x_3$ comme variable d’entrée sans changer la valeure de l’objectif.
+	
+\subsection{La base optimale demeure-t-elle optimale si les termes de droite dans la formulation initiale du problème sont égaux à 5, 10 et 10?}
+	
+Modifier b n’affecte pas les coefficients ni les coût. Seulement les termes de droites doivent être recalculé:
+
+\begin{center}
+	\begin{math}
+	B^{-1}b =
+	\begin{pmatrix}
+		\frac{2}{3}  & -\frac{1}{3} & 0 \\[5pt]
+		-\frac{1}{3} & \frac{2}{3}  & 0 \\[5pt]
+		-1           & 0            & 1
+	\end{pmatrix}
+	\begin{pmatrix}
+		5  \\[5pt]
+		10 \\[5pt]
+		10
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		0 \\[5pt]
+		5 \\[5pt]
+		5
+	\end{pmatrix}
+	\end{math}
+\end{center}
+
+Comme $B^{-1}b \geq 0$, la solution est réalisable et donc la base demeure optimale.
+
+\subsection{Appliquer une série de transformations linéaires au tableau correspondant à la formulation initiale du problème afin d’obtenir une forme appropriée pour l’algorithme du simplexe}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|c|ccccc|c|}
+	\hline
+v.d  & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $-z$ & t.d \\ \hline
+	$x_2$ &   1   &   2   &   3   &       &      & 15  \\
+	$x_1$ &   2   &   1   &   5   &       &      & 20  \\
+	$x_4$ &   1   &   2   &   1   &   1   &      & 20  \\ \hline
+	$-z$  &  -1   &  -2   &  -3   &   1   &  1   &     \\ \hline
+\end{tabular}
+
+$L_1 \to \frac{L_1}{2}$
+
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|c|ccccc|c|}
+	\hline
+ v.d  &     $x_1$     &    $x_2$    &     $x_3$     & $x_4$ & $-z$ &      t.d       \\ \hline
+	$x_2$ & $\frac{1}{2}$ & \Circled{1} & $\frac{3}{2}$ &       &      & $\frac{15}{2}$ \\
+	$x_1$ &       2       &      1      &       5       &       &      &       20       \\
+	$x_4$ &       1       &      2      &       1       &   1   &      &       20       \\ \hline
+	$-z$  &      -1       &     -2      &      -3       &   1   &  1   &                \\ \hline
+\end{tabular}
+
+
+$L_2 \to L_2 - L_1$
+
+$L_3 \to L_3 - 2L_1$
+
+$L_4 \to L_4 + 2L_1$
+
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|c|ccccc|c|}
+	\hline
+v.d  &     $x_1$     & $x_2$ &     $x_3$     & $x_4$ & $-z$ &      t.d       \\ \hline
+	$x_2$ & $\frac{1}{2}$ &   1   & $\frac{3}{2}$ &       &      & $\frac{15}{2}$ \\
+	$x_1$ & $\frac{3}{2}$ &       & $\frac{7}{2}$ &       &      & $\frac{25}{2}$ \\
+	$x_4$ &               &       &      -2       &   1   &      &       5        \\ \hline
+	$-z$  &               &       &               &   1   &  1   &       15       \\ \hline
+\end{tabular}
+
+$L_2 \to \frac{2}{3}L_2$
+
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|c|ccccc|c|}
+	\hline
+ v.d  &     $x_1$     & $x_2$ &     $x_3$     & $x_4$ & $-z$ &      t.d       \\ \hline
+	$x_2$ & $\frac{1}{2}$ &   1   & $\frac{3}{2}$ &       &      & $\frac{15}{2}$ \\
+	$x_1$ &  \Circled{1}  &       & $\frac{7}{3}$ &       &      & $\frac{25}{3}$ \\
+	$x_4$ &               &       &      -2       &   1   &      &       5        \\ \hline
+	$-z$  &               &       &               &   1   &  1   &       15       \\ \hline
+\end{tabular}
+
+$L_1 \to L_1 - \frac{1}{2}L_2$
+
+$L_4 \to L_4 - L_3$
+
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|c|ccccc|c|}
+	\hline
+v.d  & $x_1$ & $x_2$ &     $x_3$     & $x_4$ & $-z$ &      t.d       \\ \hline
+	$x_2$ &       &   1   & $\frac{1}{3}$ &       &      & $\frac{10}{3}$ \\
+	$x_1$ &   1   &       & $\frac{7}{3}$ &       &      & $\frac{25}{3}$ \\
+	$x_4$ &       &       &      -2       &   1   &      &       5        \\ \hline
+	$-z$  &       &       &       2       &       &  1   &       10       \\ \hline
+\end{tabular}
+	
+\end{center}

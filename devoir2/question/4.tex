@@ -1,5 +1,6 @@
-\section{Question 4}
-
+\section*{Question 4}
+\addcontentsline{toc}{section}{Question 4}
+\begin{em}
 Soit le problème :
 
 \begin{tabular}{@{}rrrrrrrrrrrr@{}}
@@ -8,16 +9,19 @@ Soit le problème :
 	          & $-3x_1$ & $+$ & $x_2$ &     &       & $+$ & $5x_4$ & $+$ & $3x_5$ & $=$ & 15
 \end{tabular}
 
+Expliquer comment on peut augmenter le tableau optimal afin d’y inclure la variable~$x_6$ sans qu’il soit nécessaire d’appliquer à nouveau l’algorithme du simplexe.
+\end{em}
+
 Lorsqu’on résout ce problème avec l’algorithme du simplexe. Le premier tableau est:
 
 \begin{center}
+	\renewcommand{\arraystretch}{1.5}
 	\begin{tabular}{|c|cccccc|c|}
 		\hline
-		 Variables  &         &         &         &         &         &      &  Termes   \\
-		dépendantes & $x_{1}$ & $x_{2}$ & $x_{3}$ & $x_{4}$ & $x_{5}$ & $-z$ & de droite \\ \hline
-		  $x_{3}$   &  $-6$   &         &    1    &  $-2$   &    2    &      &     6     \\
-		  $x_{2}$   &  $-3$   &    1    &         &    5    &    3    &      &    15     \\ \hline
-		   $-z$     &    5    &         &         &    3    &  $-2$   &  1   &     0     \\ \hline
+		 v.d.   & $x_{1}$ & $x_{2}$ & $x_{3}$ & $x_{4}$ & $x_{5}$ & $-z$ & t.d. \\ \hline
+		$x_{3}$ &  $-6$   &         &    1    &  $-2$   &    2    &      &  6   \\
+		$x_{2}$ &  $-3$   &    1    &         &    5    &    3    &      &  15  \\ \hline
+		 $-z$   &    5    &         &         &    3    &  $-2$   &  1   &  0   \\ \hline
 	\end{tabular}
 \end{center}
 
@@ -69,12 +73,16 @@ Il faut ajouter ce nombre au cout dans l’objectif :
 Ainsi, le tableau optimal avec la nouvelle variable est :
 
 \begin{center}
+	\renewcommand{\arraystretch}{1.5}
 	\begin{tabular}{|c|ccccccc|c|}
 		\hline
-		 Variables  &         &         &         &         &         &         &      &  Termes   \\
-		dépendantes & $x_{1}$ & $x_{2}$ & $x_{3}$ & $x_{4}$ & $x_{5}$ & $x_{6}$ & $-z$ & de droite \\ \hline
-		  $x_{3}$   &         &  $1/2$  & $- 1/4$ &    3    &    1    &  $7/2$  &      &     6     \\
-		  $x_{2}$   &    1    &  $1/6$  & $- 1/4$ &  $4/3$  &         &  $3/2$  &      &     1     \\ \hline
-		   $-z$     &         &  $1/6$  &  $3/4$  &  $7/3$  &         &  $1/2$  &  1   &     7     \\ \hline
+		 v.d.   & $x_{1}$ & $x_{2}$ & $x_{3}$ & $x_{4}$ & $x_{5}$ & $x_{6}$ & $-z$ & t.d. \\ \hline
+		$x_{3}$ &         &  $1/2$  & $- 1/4$ &    3    &    1    &  $7/2$  &      &  6   \\
+		$x_{2}$ &    1    &  $1/6$  & $- 1/4$ &  $4/3$  &         &  $3/2$  &      &  1   \\ \hline
+		 $-z$   &         &  $1/6$  &  $3/4$  &  $7/3$  &         &  $1/2$  &  1   &  7   \\ \hline
 	\end{tabular}
 \end{center}
+
+\emph{En supposant que la variable~$x_6$ représente le niveau d’une certaine activité, que pouvez-vous conclure à propos de cette activité ?}
+
+La valeur de $\bar{c_6}$ est de 1/2, c’est une valeur positive. Si c’était une valeur négative, modifier les variables dépendantes, en faire entrer une pour en faire une autre, ce qui aurait changé la solution. Ce n’est pas le cas. Cette nouvelle activité ne change en rien la solution optimale.

@@ -1,1 +1,99 @@
-\section{Question 1}
+\section*{Question 1}
+\addcontentsline{toc}{section}{Question 1}
+
+\emph{Trouver des valeurs pour $a$, $b$, $c$ et $d$ telles que : $x_7$ est variable d’entrée, $x_5$ est variable de sortie\dots}
+\begin{center}
+	\renewcommand{\arraystretch}{1.5}
+	\begin{tabular}{|c|cccccccc|c|}
+		\hline
+		v.d.  & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $x_5$ & $x_6$ & $x_7$ & $-z$ & t.d. \\ \hline
+		$x_3$ &   3   &       &   1   &  $a$  &       &  -1   &       &      &  1   \\
+		$x_2$ &   4   &   1   &       &  -1   &       &   2   &  $b$  &      &  6   \\
+		$x_5$ &  -1   &       &       &   2   &   1   &  $c$  &   4   &      &  5   \\ \hline
+		$-z$  &   2   &       &       &   3   &       &   2   &  $d$  &  1   &  25  \\ \hline
+	\end{tabular}
+\end{center}
+
+Afin que $x_5$ soit variable de sortie, on doit avoir $min \{\frac{5}{4}, \frac{6}{b}\}$ = $\frac{5}{4}$ ce qui implique que $\frac{5}{4} < \frac{6}{b}$ et donc que $b < \frac{24}{5}$. On peut alors effectuer on pivot pour obtenir le tableau suivant:
+
+\begin{center}
+	\renewcommand{\arraystretch}{1.5}
+	\begin{tabular}{|c|cccccccc|c|}
+		\hline
+		 v.d  &      $x_1$      & $x_2$ & $x_3$ &      $x_4$       &     $x_5$      &      $x_6$       & $x_7$ & $-z$ &        t.d        \\ \hline
+		$x_3$ &        3        &       &   1   &       $a$        &                &        -1        &       &      &         1         \\
+		$x_2$ & 4+$\frac{b}{4}$ &   1   &       & -1-$\frac{b}{2}$ & -$\frac{b}{4}$ & 2-$\frac{bc}{4}$ &       &      & 6-$\frac{5b}{4}$  \\
+		$x_7$ & -$\frac{1}{4}$  &       &       &  $\frac{1}{2}$   & $\frac{1}{4}$  &  $\frac{c}{4}$   &   1   &      &   $\frac{5}{4}$   \\ \hline
+		$-z$  & 2+$\frac{d}{4}$ &       &       & 3-$\frac{d}{2}$  & -$\frac{d}{4}$ & 2-$\frac{cd}{4}$ &       &  1   & 25-$\frac{5d}{4}$ \\ \hline
+	\end{tabular}
+\end{center}
+
+\emph{\dots et après une itération du simplexe on se retrouve dans une situation où on a :}
+
+\subsection{Une solution optimale unique}
+
+Afin que la solution soit optimale, tous les coût doivent être positifs. Les variables $a,b,c,d$ doivent donc respecter les contraintes suivantes:
+\begin{enumerate}[label=(\arabic*),itemsep=1pt]
+	\item $2 + \frac{d}{4} > 0 \Rightarrow d > -8$
+	\item $3 - \frac{d}{2} > 0 \Rightarrow d < 6$
+	\item $ - \frac{d}{4} > 0 \Rightarrow d < 0$
+	\item $2 - \frac{cd}{4} > 0 \Rightarrow cd < 8$
+\end{enumerate}
+
+On peut donc choisir par exemple $a = 1$, $b=4$, $c=2$ et $d=-4$ pour obtenir le tableau suivant qui est optimale:
+	
+\begin{center}
+	\renewcommand{\arraystretch}{1.5}
+	\begin{tabular}{|c|cccccccc|c|}
+		\hline
+		 v.d  &     $x_1$      & $x_2$ & $x_3$ &     $x_4$     &     $x_5$     &     $x_6$     & $x_7$ & $-z$ &      t.d      \\ \hline
+		$x_3$ &       3        &       &   1   &       1       &               &      -1       &       &      &       1       \\
+		$x_2$ &       5        &   1   &       &      -3       &      -1       &               &       &      &       1       \\
+		$x_7$ & -$\frac{1}{4}$ &       &       & $\frac{1}{2}$ & $\frac{1}{4}$ & $\frac{1}{2}$ &   1   &      & $\frac{5}{4}$ \\ \hline
+		$-z$  &       1        &       &       &       5       &       1       &       4       &       &  1   &      30       \\ \hline
+	\end{tabular}
+\end{center}
+
+\subsection{Une solution optimale qui n’est pas unique}
+Pour avoir une solution optimale qui n’est pas unique, on doit avoir une des variables indépendantes qui a un coût nul. En fixant par exemple $\bar{c}_1$ à zéro, on obtient la contrainte:
+\begin{enumerate}[label=(\arabic*),itemsep=1pt]
+	\setcounter{enumi}{4}
+	\item  $2 + \frac{d}{4} = 0 \Rightarrow d = -8$
+\end{enumerate}
+
+En plus des contraintes (2), (3), (4). On peut alors choisir $a = 1$, $b=4$, $c=2$ et $d=-8$ pour obtenir le tableau suivant qui est optimale mais non-unique car on pourrait effectuer un pivot avec $x_1$ comme variable d’entrée pour obtenir une autre solution:
+	
+\begin{center}
+	\renewcommand{\arraystretch}{1.5}
+	\begin{tabular}{|c|cccccccc|c|}
+		\hline
+		 v.d  &     $x_1$      & $x_2$ & $x_3$ &     $x_4$     &     $x_5$     &     $x_6$     & $x_7$ & $-z$ &      t.d      \\ \hline
+		$x_3$ &       3        &       &   1   &       1       &               &      -1       &       &      &       1       \\
+		$x_2$ &       5        &   1   &       &      -3       &      -1       &               &       &      &       1       \\
+		$x_7$ & -$\frac{1}{4}$ &       &       & $\frac{1}{2}$ & $\frac{1}{4}$ & $\frac{1}{2}$ &   1   &      & $\frac{5}{4}$ \\ \hline
+		$-z$  &                &       &       &       7       &       2       &       6       &       &  1   &      35       \\ \hline
+	\end{tabular}
+\end{center}
+
+\subsection{Un problème non borné inférieurement}
+Afin que le problème soit non borné inférieurement, on doit avoir une variable dont le coût est négatif et dont les coefficients dans toutes les contraintes sont négatifs. Dans ce cas, on pourra augmenter cette variable indéfiniment et donc faire diminuer l’objectif autant qu’on veut. Si on choisi par exemple la variable $x_6$, les contraintes suivantes sur $a$,$b$,$c$ et $d$ doivent être satisfaites :
+\begin{enumerate}[label=(\arabic*),itemsep=1pt]
+	\setcounter{enumi}{5}
+	\item $2 - \frac{bc}{4} < 0 \Rightarrow bc \geq 8$
+	\item $\frac{c}{4} < 0 \Rightarrow  c \leq 0$
+	\item $2 - \frac{cd}{4} < 0 \Rightarrow cd > 8$
+\end{enumerate}
+
+On peut alors choisir $a = 1$, $b = -4$, $c = -2$ et $d = -8$ pour obtenir le tableau suivant:
+	
+\begin{center}
+	\renewcommand{\arraystretch}{1.5}
+	\begin{tabular}{|c|cccccccc|c|}
+		\hline
+		 v.d  &     $x_1$      & $x_2$ & $x_3$ &     $x_4$     &     $x_5$     &     $x_6$      & $x_7$ & $-z$ &      t.d      \\ \hline
+		$x_3$ &       3        &       &   1   &       1       &               &       -1       &       &      &       1       \\
+		$x_2$ &       3        &   1   &       &       2       &       1       &                &       &      &       1       \\
+		$x_7$ & -$\frac{1}{4}$ &       &       & $\frac{1}{2}$ & $\frac{1}{4}$ & -$\frac{1}{2}$ &   1   &      & $\frac{5}{4}$ \\ \hline
+		$-z$  &                &       &       &       7       &       2       &       -2       &       &  1   &      35       \\ \hline
+	\end{tabular}
+\end{center}
