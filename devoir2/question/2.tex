@@ -11,11 +11,11 @@ On a le tableau initial suivant :
 	\begin{tabular}{|c| ccccccccc|c|}
 		\hline
 		v.d. & $x_{11}$ & $x_{21}$  & $\cdots$ & $x_{1j}$ & $x_{2j}$  & $\cdots$ & $x_{1n}$ & $x_{2n}$  & $-z$ &   t.d.   \\ \hline
-		     & $a_{11}$ & -$a_{11}$ & $\cdots$ & $a_{1j}$ & -$a_{1j}$ & $\cdots$ & $a_{1n}$ & -$a_{1n}$ &      &  $b_1$   \\
-		     & $a_{21}$ & -$a_{21}$ & $\cdots$ & $a_{2j}$ & -$a_{2j}$ & $\cdots$ & $a_{2n}$ & -$a_{2n}$ &      &  $b_2$   \\
+		     & $a_{11}$ & $-a_{11}$ & $\cdots$ & $a_{1j}$ & $-a_{1j}$ & $\cdots$ & $a_{1n}$ & $-a_{1n}$ &      &  $b_1$   \\
+		     & $a_{21}$ & $-a_{21}$ & $\cdots$ & $a_{2j}$ & $-a_{2j}$ & $\cdots$ & $a_{2n}$ & $-a_{2n}$ &      &  $b_2$   \\
 		     & $\vdots$ & $\vdots$  & $\ddots$ & $\vdots$ & $\vdots$  & $\ddots$ & $\vdots$ & $\vdots$  &      & $\vdots$ \\
-		     & $a_{m1}$ & -$a_{m1}$ & $\cdots$ & $a_{mj}$ & -$a_{mj}$ & $\cdots$ & $a_{mn}$ & -$a_{mn}$ &      &  $b_m$   \\ \hline
-		 -z  & $c_{1}$  & -$c_{1}$  & $\cdots$ & $c_{j}$  & -$c_{j}$  & $\cdots$ & $c_{n}$  & -$c_{n}$  &  1   &          \\ \hline
+		     & $a_{m1}$ & $-a_{m1}$ & $\cdots$ & $a_{mj}$ & $-a_{mj}$ & $\cdots$ & $a_{mn}$ & $-a_{mn}$ &      &  $b_m$   \\ \hline
+		$-z$ & $c_1$    &  $-c_1$   & $\cdots$ &  $c_j$   &  $-c_j$   & $\cdots$ &  $c_n$   &  $-c_n$   &  1   &          \\ \hline
 	\end{tabular}
 \end{center}
 
@@ -26,11 +26,11 @@ Afin de rendre $x_{1j}$ variable indépendante, on doit avoir un 1 vis-à-vis de
 	\begin{tabular}{|c|ccccccccc|c|}
 		\hline
 		v.d. &        $x_{11}$         &         $x_{21}$         & $\cdots$ & $x_{1j}$ & $x_{2j}$  & $\cdots$ &        $x_{1n}$         &         $x_{2n}$         & $-z$ &          t.d.          \\ \hline
-		     & $\frac{a_{11}}{a_{1j}}$ & -$\frac{a_{11}}{a_{1j}}$ & $\cdots$ &    1     &    -1     & $\cdots$ & $\frac{a_{1n}}{a_{1j}}$ & -$\frac{a_{1n}}{a_{1j}}$ &      & $\frac{b_{1}}{a_{1j}}$ \\
-		     &        $a_{21}$         &        -$a_{21}$         & $\cdots$ & $a_{2j}$ & -$a_{2j}$ & $\cdots$ &        $a_{2n}$         &        -$a_{2n}$         &      &         $b_2$          \\
+		     & $\frac{a_{11}}{a_{1j}}$ & $-\frac{a_{11}}{a_{1j}}$ & $\cdots$ &    1     &   $-1$    & $\cdots$ & $\frac{a_{1n}}{a_{1j}}$ & $-\frac{a_{1n}}{a_{1j}}$ &      & $\frac{b_{1}}{a_{1j}}$ \\
+		     &        $a_{21}$         &        $-a_{21}$         & $\cdots$ & $a_{2j}$ & $-a_{2j}$ & $\cdots$ &        $a_{2n}$         &        $-a_{2n}$         &      &         $b_2$          \\
 		     &        $\vdots$         &         $\vdots$         & $\ddots$ & $\vdots$ & $\vdots$  & $\ddots$ &        $\vdots$         &         $\vdots$         &      &        $\vdots$        \\
-		     &        $a_{m1}$         &        -$a_{m1}$         & $\cdots$ & $a_{mj}$ & -$a_{mj}$ & $\cdots$ &        $a_{mn}$         &        -$a_{mn}$         &      &         $b_m$          \\ \hline
-		 -z  &         $c_{1}$         &         -$c_{1}$         & $\cdots$ & $c_{j}$  & -$c_{j}$  & $\cdots$ &         $c_{n}$         &         -$c_{n}$         &  1   &                        \\ \hline
+		     &        $a_{m1}$         &        $-a_{m1}$         & $\cdots$ & $a_{mj}$ & $-a_{mj}$ & $\cdots$ &        $a_{mn}$         &        $-a_{mn}$         &      &         $b_m$          \\ \hline
+		$-z$ &          $c_1$          &          $-c_1$          & $\cdots$ &  $c_j$   &  $-c_j$   & $\cdots$ &          $c_n$          &          $-c_n$          &  1   &                        \\ \hline
 	\end{tabular}
 \end{center}
 
@@ -42,11 +42,11 @@ On peut maintenant effectuer un pivot pour obtenir:
 	\begin{tabular}{|c|ccccccccc|c|}
 		\hline
 		  v.d.   &        $x_{11}$         &         $x_{21}$         & $\cdots$ &  $x_{1j}$   &   $x_{2j}$   & $\cdots$ &        $x_{1n}$         &         $x_{2n}$         & $-z$ &          t.d.          \\ \hline
-		$x_{1j}$ & $\frac{a_{11}}{a_{1j}}$ & -$\frac{a_{11}}{a_{1j}}$ & $\cdots$ &      1      &      -1      & $\cdots$ & $\frac{a_{1n}}{a_{1j}}$ & -$\frac{a_{1n}}{a_{1j}}$ &      & $\frac{b_{1}}{a_{1j}}$ \\
-		         &     $\bar{a}_{21}$      &     -$\bar{a}_{21}$      & $\cdots$ &             &              & $\cdots$ &     $\bar{a}_{2n}$      &     -$\bar{a}_{2n}$      &      &     $\bar{b}_{2}$      \\
+		$x_{1j}$ & $\frac{a_{11}}{a_{1j}}$ & $-\frac{a_{11}}{a_{1j}}$ & $\cdots$ &      1      &     $-1$     & $\cdots$ & $\frac{a_{1n}}{a_{1j}}$ & $-\frac{a_{1n}}{a_{1j}}$ &      & $\frac{b_{1}}{a_{1j}}$ \\
+		         &     $\bar{a}_{21}$      &     $-\bar{a}_{21}$      & $\cdots$ &             &              & $\cdots$ &     $\bar{a}_{2n}$      &     $-\bar{a}_{2n}$      &      &     $\bar{b}_{2}$      \\
 		         &        $\vdots$         &         $\vdots$         & $\ddots$ &  $\vdots$   &   $\vdots$   & $\ddots$ &        $\vdots$         &         $\vdots$         &      &        $\vdots$        \\
-		         &     $\bar{a}_{m1}$      &     -$\bar{a}_{m1}$      & $\cdots$ &             &              & $\cdots$ &     $\bar{a}_{mn}$      &     -$\bar{a}_{mn}$      &      &      $\bar{b}_m$       \\ \hline
-		   -z    &      $\bar{c}_{1}$      &       -$\bar{c}_1$       & $\cdots$ & $\bar{c}_j$ & -$\bar{c}_j$ & $\cdots$ &       $\bar{c}_n$       &       -$\bar{c}_1$       &  1   &       $\bar{z}$        \\ \hline
+		         &     $\bar{a}_{m1}$      &     $-\bar{a}_{m1}$      & $\cdots$ &             &              & $\cdots$ &     $\bar{a}_{mn}$      &     $-\bar{a}_{mn}$      &      &      $\bar{b}_m$       \\ \hline
+		   -z    &      $\bar{c}_{1}$      &       $-\bar{c}_1$       & $\cdots$ & $\bar{c}_j$ & -$\bar{c}_j$ & $\cdots$ &       $\bar{c}_n$       &       $-\bar{c}_1$       &  1   &       $\bar{z}$        \\ \hline
 	\end{tabular}
 	%\end{small}
 \end{center}
